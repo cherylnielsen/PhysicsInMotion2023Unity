@@ -6,6 +6,9 @@
  *  
  *  This is part of the Unity Stadard Assets, and therfore freely available for use all in projects.
  *  
+ *  Alterations by Cheryl Nielsen as part of Physics in Motion:
+ *      - Disabled curser locks by commenting out function calls and changing variables to false.
+ *   
  **/
 
 using System;
@@ -23,12 +26,14 @@ namespace UnityStandardAssets.Characters.FirstPerson
         public float MaximumX = 90F;
         public bool smooth;
         public float smoothTime = 5f;
-        public bool lockCursor = true;
+        //public bool lockCursor = true;
+        private bool lockCursor = false;
 
 
         private Quaternion m_CharacterTargetRot;
         private Quaternion m_CameraTargetRot;
-        private bool m_cursorIsLocked = true;
+        //private bool m_cursorIsLocked = true;
+        private bool m_cursorIsLocked = false;
 
         public void Init(Transform character, Transform camera)
         {
@@ -61,7 +66,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 camera.localRotation = m_CameraTargetRot;
             }
 
-            UpdateCursorLock();
+            //UpdateCursorLock();
         }
 
         public void SetCursorLock(bool value)

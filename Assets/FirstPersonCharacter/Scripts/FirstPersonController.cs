@@ -8,8 +8,8 @@
  *  This is being used as part of Physics in Motion.
  *  
  *  Alterations by Cheryl Nielsen as part of Physics in Motion:
- *      - Disabled footstep sounds by commenting out function call to PlayFootStepAudio() in 
- *      the function ProgressStepCycle.
+ *      - Disabled footstep sounds by commenting out function calls.
+ *      - Disabled curser locks by commenting out function calls and changing variables to false.
  *      
  **/
 
@@ -78,7 +78,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
             if (!m_PreviouslyGrounded && m_CharacterController.isGrounded)
             {
-                PlayLandingSound();
+                //PlayLandingSound();
                 m_MoveDir.y = 0f;
                 m_Jumping = false;
             }
@@ -123,7 +123,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 if (m_Jump)
                 {
                     m_MoveDir.y = m_JumpSpeed;
-                    PlayJumpSound();
+                    //PlayJumpSound();
                     m_Jump = false;
                     m_Jumping = true;
                 }
@@ -136,7 +136,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
             ProgressStepCycle(speed);
 
-            m_MouseLook.UpdateCursorLock();
+            //m_MouseLook.UpdateCursorLock();
         }
 
 
