@@ -6,6 +6,7 @@ TagManager:
   tags:
   - LabRoom
   - DisplayBoard
+  - Equipment
   layers:
   - Default
   - TransparentFX
