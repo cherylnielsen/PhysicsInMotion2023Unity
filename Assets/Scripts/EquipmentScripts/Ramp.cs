@@ -7,7 +7,7 @@
  * File: Ramp.cs
  * 
  * Class: Ramp
- * Purpose:   
+ * Purpose:  Stores and adjusts the settings for the adjustable ramp.
  * 
  **/
 
@@ -18,6 +18,10 @@ using UnityEngine;
 
 public class Ramp : MonoBehaviour
 {
+    // location, rotation, scale, ID
+    // settings: mass, material, frictionCoeficient, angleOfIncline
+
+
     // Start is called before the first frame update
     void Start()
     {

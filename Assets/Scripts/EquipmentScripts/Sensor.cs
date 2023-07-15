@@ -7,7 +7,7 @@
  * File: Sensor.cs
  * 
  * Class: Sensor
- * Purpose: 
+ * Purpose: Stores and adjusts the settings for the sensor.
  * 
  **/
 
@@ -18,6 +18,10 @@ using UnityEngine;
 
 public class Sensor : MonoBehaviour
 {
+    // location, rotation, scale, ID
+    // settings: mass, dataRatePerSecond
+
+
     // Start is called before the first frame update
     void Start()
     {

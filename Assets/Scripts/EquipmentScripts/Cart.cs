@@ -7,7 +7,7 @@
  * File: Cart.cs
  * 
  * Class: Cart
- * Purpose: 
+ * Purpose: Stores and adjusts the settings for the cart.
  **/
 using System.Collections;
 using System.Collections.Generic;
@@ -16,6 +16,10 @@ using UnityEngine;
 
 public class Cart : MonoBehaviour
 {
+    // location, rotation, scale, ID
+    // settings: mass
+
+
     // Start is called before the first frame update
     void Start()
     {

@@ -11,100 +11,104 @@
  * the location the user chooses by clicking with the mouse.  A control pannel is also 
  * added to the lab room for the chosen equipment.
  * 
+ * The user clicks a button on the equipment list to choose an equipment item.
+ * The user then clicks a location in the lab room to place the equipment item.
+ * The chosen equipment item is added to the room at that location and a 
+ * 
  **/
 
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using TMPro;
 
 
 public class EquipmentCabinet : MonoBehaviour
 {
-
-    private Vector3 screenPosition;
+    private enum EquipmentType
+    {
+        cart, ramp, sensor
+    }
+   
     private GameObject newEquipment;
-    private Camera _camera;
 
+    public Camera cam;
+    // for linking to the prefabricated equipment game object assets
+    public GameObject[] equipmentPrefabs;
 
     // Start is called before the first frame update
     void Start()
-    {
-        // get access to the camera and its components
-        _camera = GetComponent<Camera>();
+    {        
         // locks the location of the mouse cursor in the center of the screen,
         // and makes it invisible so that it does not distract.
         // WARNING: Remember to use Escape Key (ESC) to restore the mouse cursor so you can leave the game.
-        Debug.Log("WARNING: Remember to use Escape Key to restore the mouse cursor.");
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        //Debug.Log("WARNING: Remember to use Escape Key to restore the mouse cursor.");
+        //Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-        // if the mouse has been clicked this returns true
-        if (Input.GetMouseButtonDown(0))
+        int equipmentType = -1;
+
+        if()
+
+        // if the mouse has been clicked in the lab room this returns true
+        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject() && equipmentType >= 0)
         {
-            PlaceEquipment(1);
+            PlaceEquipment(equipmentType);
         }
 
     }
 
 
-    // this lets the user know where the ray shooter is currently pointing,
-    // by laying the text "*" on the screen using a GUI game interface lable
     void OnGUI()
     {
-        int size = 12;
-        float posX = _camera.pixelWidth / 2 - size / 4;
-        float posY = _camera.pixelHeight / 2 - size / 2;
+        // this lets the user know where the ray shooter is currently pointing,
+        // by laying the text "*" on the screen using a GUI game interface lable
+        int size = 100;
+        float posX = cam.pixelWidth / 2 - size / 4;
+        float posY = cam.pixelHeight / 2 - size / 2;
         GUI.Label(new Rect(posX, posY, size, size), "*");
+
+
     }
 
 
-    void PlaceEquipment(int type = 0)
+    void PlaceEquipment(int index)
     {
-        // if the mouse was clicked shoot a ray in the direction that the camera is looking,
-        // and shoot it at the center of the camera field of view
-        // find the center of the camera field of view X and Y
-        Vector3 point = new Vector3(_camera.pixelWidth / 2, _camera.pixelHeight / 2, 0);
-        // create the ray (cast it out) with that vector location as its point of origin
-        Ray ray = _camera.ScreenPointToRay(point);
+        // Send a ray in the direction that the camera is looking,
+        // at the center of the camera field of view.
+        Vector3 point = new Vector3(cam.pixelWidth / 2, cam.pixelHeight / 2, 0);
+        Ray ray = cam.ScreenPointToRay(point);
         RaycastHit hit;
+
         // did the cast out ray hit anything
         if (Physics.Raycast(ray, out hit))
         {
-            // if false, show where the object was hit, by running a coroutine called SphereIndicator
-            StartCoroutine(SphereIndicator(hit.point));
-            //MakeAnimal(1);
+            // Place equipment where the ray hit.
+            newEquipment = Instantiate(equipmentPrefabs[index]);
+            newEquipment.transform.position = hit.point;
+            Debug.Log("Hit: " + hit.point);
         }
 
-        //GameObject dummy;
-        // Make a new dummy GameObeject to be the new animal or plant.
-        //newEquipment = Instantiate(dummy, screenPosition, Quaternion.identity) as GameObject;
-        //newEquipment.transform.Find("Plane").GetComponent<Renderer>().material = animal1;
-
     }
 
 
-    // this is the coroutine called 
-    // This shows where an object was hit by the ray at point pos,
-    // by creating a sphere at that point for one second.
-    private IEnumerator SphereIndicator(Vector3 pos)
+    void ShowEquipmentCabinet(bool showCabinet)
     {
-        GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-        sphere.transform.position = pos;
+        if(showCabinet)
+        {
 
-        // pause this function for one second, so that the user can see the sphere 
-        // indicating where the ray hit an object, and meanwhile keep the game playing,
-        // then come back to this function to continue to the next line in one second.
-        yield return new WaitForSeconds(1);
+        }
+        else
+        {
 
-        // destroy the temporary sphere object
-        Destroy(sphere);
+        }
+
     }
-
 
     
 }
