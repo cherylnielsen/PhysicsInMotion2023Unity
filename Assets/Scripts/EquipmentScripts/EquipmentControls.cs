@@ -14,11 +14,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class EquipmentControls : MonoBehaviour
 {
+    private enum EquipmentType
+    {
+        cart, ramp, sensor, none
+    }
 
+    private EquipmentType equipType;
+
+
+    // Awake is called when the script instance is being loaded
+    private void Awake()
+    {
+        
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -30,10 +43,15 @@ public class EquipmentControls : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
 
+    // For making dynamic GUI
+    void OnGUI()
+    {
+
+    }
 
 
-}
+    }
