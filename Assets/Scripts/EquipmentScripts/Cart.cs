@@ -13,22 +13,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public class Cart : MonoBehaviour
+namespace LabEquipment
 {
-    // location, rotation, scale, ID
-    // settings: mass
-
-
-    // Start is called before the first frame update
-    void Start()
+    public class Cart : IEquipment
     {
-        
-    }
+        // location, rotation, scale, ID
+        // settings: mass
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+
     }
 }

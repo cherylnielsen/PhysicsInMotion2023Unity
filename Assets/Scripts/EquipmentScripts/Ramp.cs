@@ -1,36 +1,26 @@
+
 /**
- * MS Computer Science Graduate Project: Physics In Motion
- * San Francisco State University, San Francisco, CA
- * 
- * Author: Cheryl Nielsen
- * Version: July 14, 2023  
- * File: Ramp.cs
- * 
- * Class: Ramp
- * Purpose:  Stores and adjusts the settings for the adjustable ramp.
- * 
- **/
+* MS Computer Science Graduate Project: Physics In Motion
+* San Francisco State University, San Francisco, CA
+* 
+* Author: Cheryl Nielsen
+* Version: July 14, 2023  
+* File: Ramp.cs
+* 
+* Class: Ramp
+* Purpose:  Stores and adjusts the settings for the adjustable ramp.
+* 
+**/
 
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-
-public class Ramp : MonoBehaviour
+namespace LabEquipment
 {
-    // location, rotation, scale, ID
-    // settings: mass, material, frictionCoeficient, angleOfIncline
-
-
-    // Start is called before the first frame update
-    void Start()
+    public class Ramp : IEquipment
     {
-        
+        // location, rotation, scale, ID
+        // settings: mass, material, frictionCoeficient, angleOfIncline
+
+
+
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
