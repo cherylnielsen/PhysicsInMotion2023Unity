@@ -14,12 +14,21 @@
 
 namespace LabEquipment
 {
-    public class Ramp : IEquipment
+    public class Ramp : Equipment
     {
-        // location, rotation, scale, ID
+        // location, rotation, scale
         // settings: mass, material, frictionCoeficient, angleOfIncline
 
 
+        public Ramp() 
+        { 
+        
+        }
+
+        public override void initializeSettings()
+        {
+            throw new System.NotImplementedException();
+        }
 
     }
 

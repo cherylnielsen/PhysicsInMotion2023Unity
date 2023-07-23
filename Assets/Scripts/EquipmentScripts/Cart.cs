@@ -15,11 +15,21 @@ using UnityEngine;
 
 namespace LabEquipment
 {
-    public class Cart : IEquipment
+    public class Cart : Equipment
     {
         // location, rotation, scale, ID
         // settings: mass
 
+
+        public Cart() 
+        { 
+        
+        }
+
+        public override void initializeSettings()
+        {
+            throw new System.NotImplementedException();
+        }
 
     }
 }

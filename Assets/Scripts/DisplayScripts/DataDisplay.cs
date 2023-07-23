@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace LabManagers
+namespace LabDisplays
 {
-    public class LabManager : MonoBehaviour
+    public class DataDisplay : MonoBehaviour
     {
         // Start is called before the first frame update
         void Start()

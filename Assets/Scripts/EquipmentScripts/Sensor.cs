@@ -14,12 +14,21 @@
 
 namespace LabEquipment
 {
-    public class Sensor : IEquipment
+    public class Sensor : Equipment
     {
-        // location, rotation, scale, ID
+        // location, rotation, scale
         // settings: mass, dataRatePerSecond
 
+        public Sensor() 
+        { 
+        
+        }
 
+
+        public override void initializeSettings()
+        {
+            throw new System.NotImplementedException();
+        }
 
     }
 }
