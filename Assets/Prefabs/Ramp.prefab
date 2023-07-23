@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 5948070302204194411}
   - component: {fileID: 8462049454512315041}
   m_Layer: 0
-  m_Name: adjustableRamp
+  m_Name: Ramp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

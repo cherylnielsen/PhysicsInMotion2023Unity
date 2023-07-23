@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5463490235610081158}
   - component: {fileID: 5463490235610081159}
   m_Layer: 0
-  m_Name: cart
+  m_Name: Cart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

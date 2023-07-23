@@ -17,73 +17,81 @@
  * 
  **/
 
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.EventSystems;
-using TMPro;
 using UnityEngine.UI;
+using LabManagers;
 
 
 public class EquipmentCabinet : MonoBehaviour
 {
-    [SerializeField] private Button equipmentButton, cartButton, rampButton, sensorButton;
+    [SerializeField] private Button cabinetButton;
+    [SerializeField] private Button cartBtn, blockBtn, rampBtn, sensorBtn;
     [SerializeField] private Image equipmentButtonPanel;
     [SerializeField] private Camera cam;
     [SerializeField] private GameObject[] equipmentPrefabs;
+    [SerializeField] private LabManager labManager;
+
+    private GameObject newEquipment;
+    private bool showCabinet;
 
     private enum EquipmentType
     {
-        cart, ramp, sensor, none
+        none = -1, cart = 0, block, ramp, sensor
     }
-   
-    private GameObject newEquipment;
-    private bool showCabinet;
+
     private EquipmentType equipmentType;
+
+
+
 
     // Awake is called when the script instance is being loaded
     private void Awake()
     {
-        equipmentButtonPanel.gameObject.SetActive(false);
+        showCabinet = false;
+        equipmentButtonPanel.gameObject.SetActive(showCabinet);
         equipmentType = EquipmentType.none;
+
+        // setup the button on click actions
+        cabinetButton.onClick.AddListener(ShowEquipmentCabinet);
+        cartBtn.onClick.AddListener(delegate { SetEquipmentType(EquipmentType.cart); });
+        blockBtn.onClick.AddListener(delegate { SetEquipmentType(EquipmentType.block); });
+        rampBtn.onClick.AddListener(delegate { SetEquipmentType(EquipmentType.ramp); });
+        sensorBtn.onClick.AddListener(delegate { SetEquipmentType(EquipmentType.sensor); });
     }
+
 
     // Start is called before the first frame update
     void Start()
     {
-        equipmentButton.onClick.AddListener(ShowEquipmentCabinet);
-        cartButton.onClick.AddListener(delegate { SetEquipmentType(EquipmentType.cart); });
-        rampButton.onClick.AddListener(delegate { SetEquipmentType(EquipmentType.ramp); });
-        sensorButton.onClick.AddListener(delegate { SetEquipmentType(EquipmentType.sensor); });
-
+        //labManager = new LabManager();
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        if ((int)equipmentType != (int)EquipmentType.none)
+        if (equipmentType >= 0)
         {
             PlaceEquipment();
         }
 
     }
-    
-    
-    void SetEquipmentType(EquipmentType equipType)
+
+
+    private void SetEquipmentType(EquipmentType equip)
     {
-        equipmentType = equipType;
+        equipmentType = equip;
+        Debug.Log("equipmentType: " + equipmentType.ToString());
     }
 
  
     void PlaceEquipment()
     {
-        int equipType = (int)equipmentType;
-        int none = (int)EquipmentType.none;
-
-        // if the mouse has been clicked in the lab room this returns true
+        // If the mouse has been clicked in the lab room
+        // and if an equipment type has been selected, then this returns true.
         if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject()
-            && equipType != none)
+            && equipmentType != EquipmentType.none)
         {
             // Send a ray into the screen in the direction of the mouse.
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
@@ -91,14 +99,19 @@ public class EquipmentCabinet : MonoBehaviour
             // Place the equipment where the ray cast hit.
             if (Physics.Raycast(ray, out RaycastHit hit))
             {
-            // get the object that the ray hit
-            // GameObject hitObject = hit.transform.gameObject;
-            // or use Transform objectHit = hit.transform;
-            // Do something with the object that was hit by the raycast.
-            newEquipment = Instantiate(equipmentPrefabs[equipType]);
-            newEquipment.transform.position = hit.point;
-            Debug.Log("Hit: " + hit.point);
+                // get the object that the ray hit
+                // GameObject hitObject = hit.transform.gameObject;
+                // or use Transform objectHit = hit.transform;
+                // Do something with the object that was hit by the raycast.
+
+                newEquipment = Instantiate(equipmentPrefabs[(int)equipmentType]);
+                newEquipment.transform.position = hit.point;
+                //Debug.Log("Hit: " + hit.point);
+
+                // reset equipmentType to none to prevent unintended new equipment instantiations
+                equipmentType = EquipmentType.none;
             }
+
         }
 
     }
@@ -108,14 +121,14 @@ public class EquipmentCabinet : MonoBehaviour
     {
         if(showCabinet)
         {
-            equipmentButtonPanel.gameObject.SetActive(false);
-            equipmentType = EquipmentType.none;
             showCabinet = false;
+            equipmentButtonPanel.gameObject.SetActive(showCabinet);
+            equipmentType = EquipmentType.none;            
         }
         else
         {
-            equipmentButtonPanel.gameObject.SetActive(true);
             showCabinet = true;
+            equipmentButtonPanel.gameObject.SetActive(showCabinet);            
         }
 
     }

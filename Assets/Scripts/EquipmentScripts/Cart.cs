@@ -3,32 +3,36 @@
  * San Francisco State University, San Francisco, CA
  * 
  * Author: Cheryl Nielsen
- * Version: July 14, 2023  
+ * Version: July 22, 2023  
  * File: Cart.cs
  * 
  * Class: Cart
  * Purpose: Stores and adjusts the settings for the cart.
+ * Inherits all items from Block and Equipment
  **/
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 namespace LabEquipment
 {
-    public class Cart : Equipment
+    public class Cart : Block
     {
-        // location, rotation, scale, ID
-        // settings: mass
-
+        // inherits all items from Block and Equipment  
 
         public Cart() 
         { 
-        
+            initializeSettings();
         }
 
         public override void initializeSettings()
         {
-            throw new System.NotImplementedException();
+            EquipmentType = "cart";
+            Description = "cart";
+            Category = "cart";
+
+            units = "kg";
+
+            minMass = 0.0f;
+            maxMass = 100.0f;
+            Mass = 1.0f;
         }
 
     }

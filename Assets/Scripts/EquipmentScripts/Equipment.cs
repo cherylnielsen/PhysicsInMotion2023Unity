@@ -1,8 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.InteropServices.WindowsRuntime;
+/**
+ * MS Computer Science Graduate Project: Physics In Motion
+ * San Francisco State University, San Francisco, CA
+ * 
+ * Author: Cheryl Nielsen
+ * Version: July 22, 2023  
+ * File: Cart.cs
+ * 
+ * Class: Equipment
+ * Purpose: Abstract class that stores and adjusts the settings generic to any lab equipment.
+ *          All lab equipment inherit from this class.
+ **/
+
 using UnityEngine;
-using UnityEngine.Rendering;
 
 namespace LabEquipment
 {
@@ -12,9 +21,6 @@ namespace LabEquipment
         private string equipmentType;
         private string description;
         private string category;
-        private Vector3 position;
-        private Vector3 rotation;
-        private Vector3 scale;
 
         public abstract void initializeSettings();
 
@@ -41,24 +47,6 @@ namespace LabEquipment
         {
             get { return category; }
             set { category = value; }
-        }
-
-        public Vector3 Position
-        {
-            get { return position; }
-            set { position = value; }
-        }
-
-        public Vector3 Rotation
-        {
-            get { return rotation; }
-            set { rotation = value; }
-        }
-
-        public Vector3 Scale
-        {
-            get { return scale; }
-            set { scale = value; }
         }
 
 
