@@ -22,16 +22,18 @@ namespace LabManagers
 {
     public class EquipmentControlDisplay : MonoBehaviour
     {
-        private ArrayList labEquipmentList;
+        [SerializeField] private List<GameObject> labEquipmentList;
+        
+        public EquipmentControlDisplay() 
+        {
+            labEquipmentList = new List<GameObject>();
+        }
 
 
         // Awake is called when the script instance is being loaded
         private void Awake()
         {
-            labEquipmentList = new ArrayList();
-            // populate settings from database
-            initializeEquipmentList();
-            initializeEquipmentSettings();
+            
         }
 
         // Start is called before the first frame update

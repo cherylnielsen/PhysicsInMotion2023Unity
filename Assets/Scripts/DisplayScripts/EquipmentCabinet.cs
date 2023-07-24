@@ -31,7 +31,7 @@ public class EquipmentCabinet : MonoBehaviour
     [SerializeField] private Image equipmentButtonPanel;
     [SerializeField] private Camera cam;
     [SerializeField] private GameObject[] equipmentPrefabs;
-    [SerializeField] private LabManager labManager;
+    
 
     private GameObject newEquipment;
     private bool showCabinet;
@@ -55,10 +55,13 @@ public class EquipmentCabinet : MonoBehaviour
 
         // setup the button on click actions
         cabinetButton.onClick.AddListener(ShowEquipmentCabinet);
+
+        // Event actions to set the equipment type to create (Instantiate) when that equipment type is chosen.
         cartBtn.onClick.AddListener(delegate { SetEquipmentType(EquipmentType.cart); });
         blockBtn.onClick.AddListener(delegate { SetEquipmentType(EquipmentType.block); });
         rampBtn.onClick.AddListener(delegate { SetEquipmentType(EquipmentType.ramp); });
         sensorBtn.onClick.AddListener(delegate { SetEquipmentType(EquipmentType.sensor); });
+
     }
 
 
@@ -71,13 +74,19 @@ public class EquipmentCabinet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (equipmentType >= 0)
+        if ((int)equipmentType >= 0)
         {
             PlaceEquipment();
         }
 
     }
 
+    /**
+    public void OnGUI()
+    {
+        
+    }
+    **/
 
     private void SetEquipmentType(EquipmentType equip)
     {
@@ -108,8 +117,6 @@ public class EquipmentCabinet : MonoBehaviour
                 newEquipment.transform.position = hit.point;
                 //Debug.Log("Hit: " + hit.point);
 
-                // reset equipmentType to none to prevent unintended new equipment instantiations
-                equipmentType = EquipmentType.none;
             }
 
         }

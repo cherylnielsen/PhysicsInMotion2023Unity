@@ -13,37 +13,46 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace LabManagers
 {
+   
     public class LabManager : MonoBehaviour
     {
+        // save lab settings data graphs math diagrams etc to database
+        // inititalize settings from database
+        [SerializeField] private EquipmentCabinet equipCabinet;
+        [SerializeField] private EquipmentControlDisplay equipControlDisplay;
+
+        // Singleton Pattern, persistant single created object of this class
         public static LabManager intance = null;
-        private LabManager() { }
+       
+       // Singleton Pattern, public access to this single object, so it can only be created once.
+       public static LabManager Instance
+       { 
+           get 
+           {
+               if (LabManager.intance == null)
+               {
+                   LabManager.intance = new LabManager();
+               }
+               
+               return LabManager.Instance;                
+           } 
+       }
+       
 
-        public static LabManager Instance
-        { 
-            get 
-            {
-                if (LabManager.intance == null)
-                {
-                    LabManager.intance = new LabManager();
-                }
-                
-                return LabManager.Instance;                
-            } 
-        }
-
-
-        
+        // member variables for controlling lab actions
+        //
 
         // Awake is called when the script instance is being loaded
         private void Awake()
         {
-            
-            // other initializations
-
+            GameObject gb = GameObject.Find("LabManager");
+            equipCabinet = gb.GetComponent<EquipmentCabinet>();
+            equipControlDisplay = gb.GetComponent<EquipmentControlDisplay>();
         }
 
         // Start is called before the first frame update
@@ -59,8 +68,7 @@ namespace LabManagers
         }
 
 
-        // save lab settings data graphs math diagrams etc to database
-        // inititalize settings from database
+
 
 
     }

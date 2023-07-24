@@ -1130,6 +1130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1226532660, guid: 24a5eba7c8032de41ad42a41d65ee498, type: 3}
+      propertyPath: m_Mass
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 5926417929515385580, guid: 24a5eba7c8032de41ad42a41d65ee498, type: 3}
       propertyPath: m_Name
       value: Lab Table
@@ -2500,6 +2504,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b488ba65e8429741afbfbe20025d12f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  equipCabinet: {fileID: 0}
+  equipControlDisplay: {fileID: 0}
 --- !u!114 &1333144166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2512,6 +2518,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64904097a3c294d44b3ef6c1275b1f1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  labEquipmentList: []
 --- !u!114 &1333144167
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2536,7 +2543,6 @@ MonoBehaviour:
   - {fileID: 3161657657818128952, guid: 099e3039f18af2e4c8561bbd0707c9dd, type: 3}
   - {fileID: 7957791638096526196, guid: b9537cce3b6f8f848bdbbc821db6074d, type: 3}
   - {fileID: 4744200688846798966, guid: a7bf6d0cc3168154a9e9432a1c7c088e, type: 3}
-  labManager: {fileID: 0}
 --- !u!1 &1352040588
 GameObject:
   m_ObjectHideFlags: 0
