@@ -16,10 +16,10 @@ namespace LabEquipment
     {
         // position, rotation, scale, id
         
-        private float mass;
         protected float minMass;
         protected float maxMass;
         protected string units;
+        protected float mass;
 
         public Block() 
         { 
@@ -35,8 +35,8 @@ namespace LabEquipment
             units = "kg";
 
             minMass  = 0.0f;
-            maxMass = 100.0f;
-            Mass = 1.0f;
+            maxMass = 20.0f;
+            Mass = 2.0f;
         }
 
         public float Mass

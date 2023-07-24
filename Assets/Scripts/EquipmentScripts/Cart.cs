@@ -31,8 +31,8 @@ namespace LabEquipment
             units = "kg";
 
             minMass = 0.0f;
-            maxMass = 100.0f;
-            Mass = 1.0f;
+            maxMass = 20.0f;
+            Mass = 2.0f;
         }
 
     }
