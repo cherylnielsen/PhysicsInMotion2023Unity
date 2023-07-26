@@ -12,13 +12,22 @@ namespace LabEquipment
 
         // The equipment associated with this control
         [SerializeField] protected GameObject equipmentObj;
-        protected Equipment equipment;
-        
-        // Some basic GUI default items
-         
+        protected bool hideControls;
 
+
+        // Awake is called when the script instance is being loaded
+        private void Awake()
+        {
+            //equipment = equipmentObj.GetComponent<Equipment>() as Sensor;
+            initializeControls();
+        }
+
+
+        // Some basic GUI default items
 
         public abstract void initializeControls();
+
+        public abstract void showControls();
 
 
         

@@ -18,7 +18,7 @@ namespace LabEquipment
     public abstract class Equipment: MonoBehaviour {
 
         private int id;
-        private string equipmentType;
+        private string equipmentName;
         private string description;
         private string category;
 
@@ -31,10 +31,10 @@ namespace LabEquipment
             set { id = value; } 
         }
 
-        public string EquipmentType
+        public string EquipmentName
         {
-            get { return equipmentType; }
-            set { equipmentType = value; }
+            get { return equipmentName; }
+            set { equipmentName = value; }
         }
 
         public string Description

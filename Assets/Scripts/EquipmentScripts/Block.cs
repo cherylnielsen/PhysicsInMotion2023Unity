@@ -28,7 +28,7 @@ namespace LabEquipment
 
         public override void initializeSettings()
         {
-            EquipmentType = "block";
+            EquipmentName = "block";
             Description = "block";
             Category = "block";
 

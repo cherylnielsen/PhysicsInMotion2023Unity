@@ -9,7 +9,7 @@ public class BlockControl : EquipmentControl
     // Awake is called when the script instance is being loaded
     private void Awake()
     {
-        equipment = equipmentObj.GetComponent<Equipment>() as Sensor;
+        //equipment = equipmentObj.GetComponent<Equipment>() as Block;
         initializeControls();
     }
 
@@ -29,5 +29,10 @@ public class BlockControl : EquipmentControl
     void Update()
     {
         
+    }
+
+    public override void showControls()
+    {
+        throw new System.NotImplementedException();
     }
 }

@@ -16,90 +16,74 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Xml;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace LabManagers
+
+public class EquipmentControlDisplay : MonoBehaviour
 {
-    public class EquipmentControlDisplay : MonoBehaviour
+        
+    [SerializeField] private TMP_Dropdown controlDropdown;
+    [SerializeField] private List<GameObject> equipmentControls;
+
+    /**
+    // Awake is called when the script instance is being loaded
+    private void Awake()
     {
-        [SerializeField] private Button controlsButton;
-        [SerializeField] private TMP_Dropdown controlDropdown;
-        [SerializeField] private Image equipControlSubPanel;
+        controlDropdown.onValueChanged.AddListener(ShowEquipmentControls);
+    }
 
-        private bool showControls;
-
-        public enum EquipmentType
-        {
-            none = -1, cart = 0, block, ramp, sensor
-        }
-
-        private EquipmentType equipType;
-
-        public EquipmentType EquipType
-        {
-            get { return equipType; }
-            set { equipType = value; }
-        }
+    public void ShowEquipmentControls(int num)
+    {
+        Debug.Log("dropdown equipmentType: " + equipType.ToString());
+    }
+    **/
 
 
-        // Awake is called when the script instance is being loaded
-        private void Awake()
-        {
-            showControls = false;
-            equipControlSubPanel.gameObject.SetActive(showControls);
-            equipType = EquipmentType.none;
 
-            // setup the button on click actions
-            controlsButton.onClick.AddListener(ShowEquipmentControls);
+    
+    public enum EquipmentType
+    {
+        none = 0, block, ramp, cart, sensor
+    }
 
-            // setup the dropdown menu actions
-            controlDropdown.onValueChanged.AddListener(SetEquipmentType);
-        }
+    private EquipmentType equipType;
 
-        private void ShowEquipmentControls()
-        {
-            if (showControls)
-            {
-                showControls = false;
-                equipControlSubPanel.gameObject.SetActive(showControls);
-                equipType = EquipmentType.none;
-            }
-            else
-            {
-                showControls = true;
-                equipControlSubPanel.gameObject.SetActive(showControls);
-            }
-        }
-
-        private void SetEquipmentType(int num)
-        {
-            //int num = controlDropdown.value;
-            equipType = (EquipmentType)num;
-            Debug.Log("dropdown equipmentType: " + equipType.ToString());
-        }
+    public EquipmentType EquipType
+    {
+        get { return equipType; }
+        set { equipType = value; }
+    }
 
 
-        private void DisplayController(int num)
-        {
-            //throw new NotImplementedException();
-        }
+    // Awake is called when the script instance is being loaded
+    private void Awake()
+    {
+        equipType = EquipmentType.none;
+        controlDropdown.onValueChanged.AddListener(ShowEquipmentControls);
+    }
+
+    public void ShowEquipmentControls(int num)
+    {
+        equipType = (EquipmentType)num;
+        Debug.Log("dropdown equipmentType: " + equipType.ToString());
+    }
+    
 
 
-        // Start is called before the first frame update
-        void Start()
-        {
-
-        }
-
-
-        // Update is called once per frame
-        void Update()
-        {
-            
-        }
-
-
+    // Start is called before the first frame update
+    void Start()
+    {
 
     }
+
+
+    // Update is called once per frame
+    void Update()
+    {
+            
+    }
+
+
 }

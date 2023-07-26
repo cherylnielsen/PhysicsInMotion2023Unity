@@ -10,7 +10,7 @@ public class CartControl : EquipmentControl
     // Awake is called when the script instance is being loaded
     private void Awake()
     {
-        equipment = equipmentObj.GetComponent<Equipment>() as Sensor;
+        
         initializeControls();
     }
 
@@ -30,5 +30,10 @@ public class CartControl : EquipmentControl
     void Update()
     {
         
+    }
+
+    public override void showControls()
+    {
+        throw new System.NotImplementedException();
     }
 }

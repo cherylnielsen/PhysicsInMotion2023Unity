@@ -9,7 +9,7 @@ public class RampControl : EquipmentControl
     // Awake is called when the script instance is being loaded
     private void Awake()
     {
-        equipment = equipmentObj.GetComponent<Equipment>() as Sensor;
+        //equipment = equipmentObj.GetComponent<Equipment>() as Ramp;
         initializeControls();
     }
 
@@ -29,5 +29,10 @@ public class RampControl : EquipmentControl
     void Update()
     {
         
+    }
+
+    public override void showControls()
+    {
+        throw new System.NotImplementedException();
     }
 }
