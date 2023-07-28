@@ -32,18 +32,13 @@ public class EquipmentCabinet2 : MonoBehaviour
     [SerializeField] private Camera cam;
 
     private bool showCabinet;
-    private TypeOfEquipment equipType;
     private GameObject newEquipment;
-
-    public TypeOfEquipment EquipType { get => equipType; set => equipType = value; }
     public bool ShowCabinet { get => showCabinet; set => showCabinet = value; }
 
 
     // Awake is called when the script instance is being loaded
     private void Awake()
     {
-        EquipType = new TypeOfEquipment();
-        EquipType = TypeOfEquipment.None;
         ShowCabinet = false;
         buttonPanel.gameObject.SetActive(ShowCabinet);
         
@@ -61,7 +56,6 @@ public class EquipmentCabinet2 : MonoBehaviour
     {
         if (ShowCabinet)
         {
-            EquipType = TypeOfEquipment.None;
             ShowCabinet = false;
             buttonPanel.gameObject.SetActive(ShowCabinet);            
         }
@@ -75,9 +69,9 @@ public class EquipmentCabinet2 : MonoBehaviour
 
 
     // TypeOfEquipment is placed at the location the user chooses by clicking with the mouse.
-    public void addEquipmentToLab(TypeOfEquipment equip)
+    public void addEquipmentToLab(TypeOfEquipment equipType)
     {
-        if (equip != TypeOfEquipment.None)
+        if (equipType != TypeOfEquipment.None)
         {
             // If the mouse has been clicked in the lab room
             // and if an equipment type has been selected, then this returns true.
@@ -94,10 +88,10 @@ public class EquipmentCabinet2 : MonoBehaviour
                     // or use Transform objectHit = hit.transform;
                     // Do something with the object that was hit by the raycast.
 
-                    newEquipment = Instantiate(equipmentPrefabs[(int)equip]);
+                    newEquipment = Instantiate(equipmentPrefabs[(int)equipType]);
                     newEquipment.transform.position = hit.point;
 
-                    switch (equip)
+                    switch (equipType)
                     {
                         case TypeOfEquipment.Block:
                             newEquipment.GetComponent<Block>().initializeSettings(LabManager.LabEquipmentNumber++);

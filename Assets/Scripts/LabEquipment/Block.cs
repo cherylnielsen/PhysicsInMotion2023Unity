@@ -23,10 +23,7 @@ public class Block : LabEquipment
 
     // units, range of values, and initial value
     private EquipmentSetting mass;
-    private EquipmentSetting coefficientOfFriction;
-
-
-    public Block() { }
+    private EquipmentSetting frictionCoefficient;
 
 
     public override void initializeSettings(int equipID)
@@ -37,17 +34,24 @@ public class Block : LabEquipment
         Description = EquipType.ToString();
 
         // units, minimum, maximum, initial value
-        Mass = new EquipmentSetting("kg", 0.0f, 20.0f, 2.0f);
+        Mass = new EquipmentSetting("Mass", "kg", 0.0f, 20.0f, 2.0f);
         // units, minimum, maximum, initial value
-        CoefficientOfFriction = new EquipmentSetting("", 0.0f, 2.0f, 0.0f);
+        FrictionCoefficient = new EquipmentSetting("Coefficient of Friction", "", 0.0f, 2.0f, 0.0f);
 
         // add the settingsList to the list
-        settingsList.Add(Mass);
-        settingsList.Add(CoefficientOfFriction);
+        equipSettings.Add(Mass);
+        equipSettings.Add(FrictionCoefficient);
+    }
+
+
+    public override void initializeControlGUI(LabEquipment equipment)
+    {
+        Debug.Log("inside of Block initializeControlGUI");
+
     }
 
 
     public EquipmentSetting Mass { get => mass; set => mass = value; }
 
-    public EquipmentSetting CoefficientOfFriction { get => coefficientOfFriction; set => coefficientOfFriction = value; }
+    public EquipmentSetting FrictionCoefficient { get => frictionCoefficient; set => frictionCoefficient = value; }
 }

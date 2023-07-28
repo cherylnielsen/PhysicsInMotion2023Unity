@@ -38,7 +38,7 @@ public class LabManager : MonoBehaviour
     [SerializeField] private Camera cam;   
 
     // the list of equipment in the lab
-    private Dictionary<int, GameObject> labEquipmentList; 
+    private Dictionary<int, LabEquipment> labEquipmentList; 
     // the id of the next equipment added to the lab
     private static int labEquipmentNumber = 0;
 
@@ -69,7 +69,7 @@ public class LabManager : MonoBehaviour
     private void Awake()
     {
         LabEquipmentNumber = 0;
-        labEquipmentList = new Dictionary<int, GameObject>();
+        labEquipmentList = new Dictionary<int, LabEquipment>();
         
         equipmentCabinet = equipCabinet.GetComponent<EquipmentCabinet2>();
         equipmentControls = equipControl.GetComponent<EquipmentControlDisplay>();

@@ -17,16 +17,18 @@ using UnityEngine;
 using static EquipmentType;
 
 
-public abstract class LabEquipment {
+public abstract class LabEquipment : MonoBehaviour 
+{
 
     private int equipmentID;
     private string equipmentName;
     private string description;
     private TypeOfEquipment equipType;
 
-    protected List<EquipmentSetting> settingsList;
+    protected List<EquipmentSetting> equipSettings;
 
     public abstract void initializeSettings(int equipID);
+    public abstract void initializeControlGUI(LabEquipment equipment);
 
 
     public TypeOfEquipment EquipType { get => equipType; set => equipType = value; }

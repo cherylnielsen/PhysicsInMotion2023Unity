@@ -21,9 +21,8 @@ public class Ramp : LabEquipment
     // position, rotation, scale ??
 
     private EquipmentSetting angleOfIncline;
-    private EquipmentSetting coefficientOfFriction;
+    private EquipmentSetting frictionCoefficient;
 
-    public Ramp() { }
 
     public override void initializeSettings(int equipID)
     {
@@ -33,17 +32,23 @@ public class Ramp : LabEquipment
         Description = EquipType.ToString();
 
         // units, minimum, maximum, initial value
-        AngleOfIncline = new EquipmentSetting("degree", 0.0f, 90.0f, 15.0f);
-        CoefficientOfFriction = new EquipmentSetting("", 0.0f, 2.0f, 0.0f);
+        AngleOfIncline = new EquipmentSetting("Angle of Incline", "degree", 0.0f, 90.0f, 15.0f);
+        FrictionCoefficient = new EquipmentSetting("Coefficient of Friction", "", 0.0f, 2.0f, 0.0f);
 
         // add the settingsList to the list
-        settingsList.Add(AngleOfIncline);
-        settingsList.Add(CoefficientOfFriction);
+        equipSettings.Add(AngleOfIncline);
+        equipSettings.Add(FrictionCoefficient);
+    }
+
+
+    public override void initializeControlGUI(LabEquipment equipment)
+    {
+        throw new System.NotImplementedException();
     }
 
 
     public EquipmentSetting AngleOfIncline { get => angleOfIncline; set => angleOfIncline = value; }
-    public EquipmentSetting CoefficientOfFriction { get => coefficientOfFriction; set => coefficientOfFriction = value; }
+    public EquipmentSetting FrictionCoefficient { get => frictionCoefficient; set => frictionCoefficient = value; }
 
 }
 
