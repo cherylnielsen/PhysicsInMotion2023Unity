@@ -1,9 +1,22 @@
+/**
+* MS Computer Science Graduate Project: Physics In Motion
+* San Francisco State University, San Francisco, CA
+* 
+* Author: Cheryl Nielsen
+* Version: July 22, 2023  
+* File: Cart.cs
+* 
+* Class: EquipmentType
+* Purpose: 
+* 
+**/
+
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
-using UnityEngine;
+
 
 public class EquipmentType
 {

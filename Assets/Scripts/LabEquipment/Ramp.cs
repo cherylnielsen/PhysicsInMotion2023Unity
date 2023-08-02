@@ -1,7 +1,10 @@
-
-
-
+using System.Collections.Generic;
+using Unity.VisualScripting;
+using Unity.VisualScripting.Dependencies.NCalc;
+using UnityEngine;
 using static EquipmentType;
+
+
 /**
 * MS Computer Science Graduate Project: Physics In Motion
 * San Francisco State University, San Francisco, CA
@@ -24,7 +27,7 @@ public class Ramp : LabEquipment
     private EquipmentSetting frictionCoefficient;
 
 
-    public override void initializeSettings(int equipID)
+    public void initializeSettings(int equipID)
     {
         EquipmentID = equipID;
         EquipType = TypeOfEquipment.Ramp;
@@ -36,16 +39,40 @@ public class Ramp : LabEquipment
         FrictionCoefficient = new EquipmentSetting("Coefficient of Friction", "", 0.0f, 2.0f, 0.0f);
 
         // add the settingsList to the list
-        equipSettings.Add(AngleOfIncline);
-        equipSettings.Add(FrictionCoefficient);
+        EquipSettings.Add(AngleOfIncline);
+        EquipSettings.Add(FrictionCoefficient);
     }
 
 
-    public override void initializeControlGUI(LabEquipment equipment)
+    public override void updateSetting(string settingType, string key, string value)
     {
         throw new System.NotImplementedException();
     }
 
+    public override void removeSetting(string settingType, string key, string value)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void addSetting(string settingType, string key, string value)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void updateSettingControl(string settingType, string key, string value)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void removeSettingControl(string settingType, string key, string value)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void addSettingControl(string settingType, string key, string value)
+    {
+        throw new System.NotImplementedException();
+    }
 
     public EquipmentSetting AngleOfIncline { get => angleOfIncline; set => angleOfIncline = value; }
     public EquipmentSetting FrictionCoefficient { get => frictionCoefficient; set => frictionCoefficient = value; }

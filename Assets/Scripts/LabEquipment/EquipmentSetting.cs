@@ -6,7 +6,7 @@
 * Version: July 22, 2023  
 * File: Cart.cs
 * 
-* Class: TypeOfEquipment
+* Class: EquipmentSetting
 * Purpose: Abstract class that stores and adjusts the settingsList generic to any lab equipment.
 *          All lab equipment inherit from this class.
 **/
@@ -53,7 +53,7 @@ public class EquipmentSetting
 
 
     // initialize all equipment settings
-    public void initialize(string name, string units, float min, float max, float value)
+    public void updateSettings(string name, string units, float min, float max, float value)
     {
         Name = name;
         Units = units;

@@ -12,6 +12,7 @@
  **/
 
 
+using Palmmedia.ReportGenerator.Core;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -25,17 +26,12 @@ using static EquipmentType;
 
 public class EquipmentControlDisplay : MonoBehaviour
 {
-
     [SerializeField] private GameObject[] equipControlPrefabs;
     [SerializeField] private TMP_Dropdown controlDropdown;
-
-    private Image equipmentControlPanel;
-    private GameObject newControl;
+    [SerializeField] private Image equipControlSubPanel;
 
     private Dictionary<int, GameObject> equipmentControlList;
-
-   
-
+    private GameObject newControl;
 
 
     // Awake is called when the script instance is being loaded
@@ -49,43 +45,54 @@ public class EquipmentControlDisplay : MonoBehaviour
     }
 
 
-    public void AddEquipmentControl(LabEquipment equipment)
+    public void AddEquipmentControl(GameObject equipment)
     {
-        int equipmentId = (int)equipment.EquipmentID;
-        TypeOfEquipment equipType = equipment.EquipType;
+        LabEquipment labEquipment = equipment.GetComponent<LabEquipment>();
+        TypeOfEquipment equipType = labEquipment.EquipType;
         newControl = Instantiate(equipControlPrefabs[(int)equipType]);
-
-        switch (equipType)
-        {
-            case TypeOfEquipment.Block:
-                newControl.GetComponent<Block>().initializeControlGUI(equipment);
-                Debug.Log("new Block added to controls");
-                break;
-
-            case TypeOfEquipment.Ramp:
-                newControl.GetComponent<Ramp>().initializeControlGUI(equipment);
-                Debug.Log("new Block added to controls");
-                break;
-        }
-
-        equipmentControlList[equipmentId] = newControl;
+        int id = labEquipment.EquipmentID;
+        equipmentControlList[id] = newControl;
+        newControl.SetActive(false);
+        InitializeControlGUI(newControl, labEquipment, equipType);
+        Debug.Log("new " + equipType.ToString() + " added to controls");
 
     }
 
 
-    public void ShowEquipmentControl(int value)
+    private void InitializeControlGUI(GameObject newControl, LabEquipment labEquipment, TypeOfEquipment equipType)
     {
-        if (equipmentId >= 0)
-        {
-            equipmentControlPanel.gameObject.SetActive(false);
-            // need to remove current component and add in new component ????
-            equipmentControlPanel.gameObject.SetActive(true);
-            
-        }
+        Slider slider;
+        TextMeshPro controlName;
+        TextMeshPro controlUnits;
+        TextMeshPro controlValue;
+        Button reset;
 
+        List<EquipmentSetting> settings = labEquipment.EquipSettings;
+
+        // initialize the GUI 
+        // controlName.GetComponent<TextMeshPro>().text = settings.Name;
+        // controlUnits.GetComponent<TextMeshPro>().text = settings.Units;
+        // controlValue.GetComponent<TextMeshPro>().text = settings.Value.ToString();
+
+
+        // set the event actions for the controls in the control panel
+        // slider.onValueChanged.AddListener(sliderAction);
+        // reset.onClick.AddListener(resetToDefaultSettings);
     }
 
+    public void ShowEquipmentControl(int num)
+    {
+        //if (value > 0)
+        {
+            equipmentControlList[num].SetActive(true);
 
-    public bool ShowControl { get => showControl; set => showControl = value; }
+        }
+        //else
+        {
+            equipmentControlList[num].SetActive(false);
+        }
+        
+    }
+
 
 }

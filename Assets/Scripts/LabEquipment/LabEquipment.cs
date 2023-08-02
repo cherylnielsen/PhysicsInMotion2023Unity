@@ -19,20 +19,31 @@ using static EquipmentType;
 
 public abstract class LabEquipment : MonoBehaviour 
 {
-
     private int equipmentID;
     private string equipmentName;
     private string description;
-    private TypeOfEquipment equipType;
+    private EquipmentType equipType;
 
-    protected List<EquipmentSetting> equipSettings;
+    private Dictionary<string, EquipmentSetting> equipSettings;
+    private Dictionary<string, EquipmentSettingControl> equipSettingsControl;
 
-    public abstract void initializeSettings(int equipID);
-    public abstract void initializeControlGUI(LabEquipment equipment);
+    public abstract void updateSetting(string settingType, string key, string value);
+
+    public abstract void removeSetting(string settingType, string key, string value);
+
+    public abstract void addSetting(string settingType, string key, string value);
+
+    public abstract void updateSettingControl(string settingType, string key, string value);
+
+    public abstract void removeSettingControl(string settingType, string key, string value);
+
+    public abstract void addSettingControl(string settingType, string key, string value);
 
 
-    public TypeOfEquipment EquipType { get => equipType; set => equipType = value; }
+    public EquipmentType EquipType { get => equipType; set => equipType = value; }
     public int EquipmentID { get => equipmentID; set => equipmentID = value; }
     public string EquipmentName { get => equipmentName; set => equipmentName = value; }
     public string Description { get => description; set => description = value; }
+   
+
 }
