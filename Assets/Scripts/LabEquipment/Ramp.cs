@@ -22,60 +22,34 @@ using static EquipmentType;
 public class Ramp : LabEquipment
 {
     // position, rotation, scale ??
-
-    private EquipmentSetting angleOfIncline;
-    private EquipmentSetting frictionCoefficient;
+    // mass, friction ??
 
 
-    public void initializeSettings(int equipID)
+    public override void InitializeSettings()
     {
-        EquipmentID = equipID;
-        EquipType = TypeOfEquipment.Ramp;
-        EquipmentName = EquipType.ToString() + "_" + EquipmentID;
-        Description = EquipType.ToString();
+       
+        // add the default equipment settings for this type of lab equipment
 
-        // units, minimum, maximum, initial value
-        AngleOfIncline = new EquipmentSetting("Angle of Incline", "degree", 0.0f, 90.0f, 15.0f);
-        FrictionCoefficient = new EquipmentSetting("Coefficient of Friction", "", 0.0f, 2.0f, 0.0f);
+        // name, units, minimum, maximum, initial value
+        EquipmentSetting equipmentSetting = new EquipmentSetting("Incline", "degree", 0.0f, 60.0f, 15.0f);
+        // add the setting to the list
+        addSetting(equipmentSetting);
 
-        // add the settingsList to the list
-        EquipSettings.Add(AngleOfIncline);
-        EquipSettings.Add(FrictionCoefficient);
+        // name, units, minimum, maximum, initial value
+        equipmentSetting = new EquipmentSetting("Friction", "", 0.0f, 2.0f, 0.0f);
+        addSetting(equipmentSetting);
+
+        // name, units, minimum, maximum, initial value
+        equipmentSetting = new EquipmentSetting("Length", "m", 0.0f, 1.0f, 0.0f);
+        addSetting(equipmentSetting);
+
+        // name, units, minimum, maximum, initial value
+        equipmentSetting = new EquipmentSetting("Width", "m", 0.0f, 0.20f, 0.0f);
+        addSetting(equipmentSetting);
+
     }
 
 
-    public override void updateSetting(string settingType, string key, string value)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public override void removeSetting(string settingType, string key, string value)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public override void addSetting(string settingType, string key, string value)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public override void updateSettingControl(string settingType, string key, string value)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public override void removeSettingControl(string settingType, string key, string value)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public override void addSettingControl(string settingType, string key, string value)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public EquipmentSetting AngleOfIncline { get => angleOfIncline; set => angleOfIncline = value; }
-    public EquipmentSetting FrictionCoefficient { get => frictionCoefficient; set => frictionCoefficient = value; }
 
 }
 

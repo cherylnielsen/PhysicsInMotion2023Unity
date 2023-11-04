@@ -46,8 +46,8 @@ public class EquipmentCabinet2 : MonoBehaviour
         // button to show or hide the equipment list
         cabinetButton.onClick.AddListener(showEquipmentCabinet);
         // buttons to select what equipment to add to the lab
-        blockBtn.onClick.AddListener(() => addEquipmentToLab(TypeOfEquipment.Block));
-        rampBtn.onClick.AddListener(() => addEquipmentToLab(TypeOfEquipment.Ramp));
+        blockBtn.onClick.AddListener(() => addEquipmentToLab(eType.Block));
+        rampBtn.onClick.AddListener(() => addEquipmentToLab(eType.Ramp));
 
     }
    
@@ -68,10 +68,10 @@ public class EquipmentCabinet2 : MonoBehaviour
     }
 
 
-    // TypeOfEquipment is placed at the location the user chooses by clicking with the mouse.
-    public void addEquipmentToLab(TypeOfEquipment equipType)
+    // eType is placed at the location the user chooses by clicking with the mouse.
+    public void addEquipmentToLab(eType equipType)
     {
-        if (equipType != TypeOfEquipment.None)
+        if (equipType != eType.None)
         {
             // If the mouse has been clicked in the lab room
             // and if an equipment type has been selected, then this returns true.
@@ -93,13 +93,13 @@ public class EquipmentCabinet2 : MonoBehaviour
 
                     switch (equipType)
                     {
-                        case TypeOfEquipment.Block:
+                        case eType.Block:
                             newEquipment.GetComponent<Block>().initializeSettings(LabManager.LabEquipmentNumber++);
                             Debug.Log("new Block added to lab");
                             LabManager.Instance.addLabEquipment(newEquipment);                            
                             break;
 
-                        case TypeOfEquipment.Ramp:
+                        case eType.Ramp:
                             newEquipment.GetComponent<Ramp>().initializeSettings(LabManager.LabEquipmentNumber++);
                             Debug.Log("new Ramp added to lab");
                             LabManager.Instance.addLabEquipment(newEquipment);

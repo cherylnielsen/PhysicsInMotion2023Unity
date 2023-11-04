@@ -48,7 +48,7 @@ public class EquipmentControlDisplay : MonoBehaviour
     public void AddEquipmentControl(GameObject equipment)
     {
         LabEquipment labEquipment = equipment.GetComponent<LabEquipment>();
-        TypeOfEquipment equipType = labEquipment.EquipType;
+        eType equipType = labEquipment.EquipType;
         newControl = Instantiate(equipControlPrefabs[(int)equipType]);
         int id = labEquipment.EquipmentID;
         equipmentControlList[id] = newControl;
@@ -59,7 +59,7 @@ public class EquipmentControlDisplay : MonoBehaviour
     }
 
 
-    private void InitializeControlGUI(GameObject newControl, LabEquipment labEquipment, TypeOfEquipment equipType)
+    private void InitializeControlGUI(GameObject newControl, LabEquipment labEquipment, eType equipType)
     {
         Slider slider;
         TextMeshPro controlName;
@@ -67,7 +67,7 @@ public class EquipmentControlDisplay : MonoBehaviour
         TextMeshPro controlValue;
         Button reset;
 
-        List<EquipmentSetting> settings = labEquipment.EquipSettings;
+        List<EquipmentSetting> settings = labEquipment.Settings.Keys.;
 
         // initialize the GUI 
         // controlName.GetComponent<TextMeshPro>().text = settings.Name;

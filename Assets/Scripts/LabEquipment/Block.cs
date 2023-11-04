@@ -20,57 +20,28 @@ using static EquipmentType;
 public class Block : LabEquipment
 {
     // position, rotation, scale ??
+    // mass, friction ??
+   
 
-    // units, range of values, and initial value
-    private EquipmentSetting mass;
-    private EquipmentSetting friction;
-
-
-    public void initializeSettings()
+    public override void InitializeSettings()
     {
-        EquipmentID = equipID;
-        EquipType = TypeOfEquipment.Block;
-        EquipmentName = EquipType.ToString() + "_" + equipID;
-        Description = EquipType.ToString();
+        // add the default equipment settings for this type of lab equipment
+        // name, units, minimum, maximum, initial value
+        EquipmentSetting equipmentSetting = new EquipmentSetting("Mass", "kg", 0.0f, 20.0f, 2.0f);
+        // add the setting to the list
+        addSetting(equipmentSetting);
 
-        // units, minimum, maximum, initial value
-        Mass = new EquipmentSetting("Mass", "kg", 0.0f, 20.0f, 2.0f);
-        // units, minimum, maximum, initial value
-        Friction = new EquipmentSetting("Friction", "", 0.0f, 2.0f, 0.0f);
+        // name, units, minimum, maximum, initial value
+        equipmentSetting = new EquipmentSetting("Size", "m", 0.0f, 0.10f, 0.0f);
+        addSetting(equipmentSetting);
 
-        // add the settingsList to the list
-        EquipSettings.Add(Mass);
-        EquipSettings.Add(Friction);
+        // name, units, minimum, maximum, initial value
+        equipmentSetting = new EquipmentSetting("Friction", "", 0.0f, 2.0f, 0.0f);
+        addSetting(equipmentSetting);
+
     }
 
 
-    public override void updateSetting(string settingType, string key, string value)
-    {
-        throw new System.NotImplementedException();
-    }
 
-    public override void removeSetting(string settingType, string key, string value)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public override void addSetting(string settingType, string key, string value)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public override void updateSettingControl(string settingType, string key, string value)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public override void removeSettingControl(string settingType, string key, string value)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public override void addSettingControl(string settingType, string key, string value)
-    {
-        throw new System.NotImplementedException();
-    }
+ 
 }

@@ -1,4 +1,8 @@
-﻿/**
+﻿
+
+
+using System;
+/**
 * MS Computer Science Graduate Project: Physics In Motion
 * San Francisco State University, San Francisco, CA
 * 
@@ -10,8 +14,6 @@
 * Purpose: Abstract class that stores and adjusts the settingsList generic to any lab equipment.
 *          All lab equipment inherit from this class.
 **/
-
-
 public class EquipmentSetting
 {
     // name = what is being set, the name of this group of settings
@@ -33,34 +35,13 @@ public class EquipmentSetting
     // full initializing constructor
     public EquipmentSetting(string name, string units, float min, float max, float value)
     {
-        Name = name;
-        Units = units;
+        Name = name ?? throw new ArgumentNullException(nameof(name));
+        Units = units ?? throw new ArgumentNullException(nameof(units));
         Min = min;
         Max = max;
         Value = value;
     }
 
-
-    // constructor that makes a copy of another equipement setting
-    public EquipmentSetting(EquipmentSetting equipmentSetting)
-    {
-        Name = equipmentSetting.Name;
-        Units = equipmentSetting.Units;
-        Min = equipmentSetting.Min;
-        Max = equipmentSetting.Max;
-        Value = equipmentSetting.Value;
-    }
-
-
-    // initialize all equipment settings
-    public void updateSettings(string name, string units, float min, float max, float value)
-    {
-        Name = name;
-        Units = units;
-        Min = min;
-        Max = max;
-        Value = value;
-    }
 
     // standard getters and setters
     public string Name { get => name; set => name = value; }

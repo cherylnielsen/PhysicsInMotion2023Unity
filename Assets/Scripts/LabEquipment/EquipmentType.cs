@@ -20,22 +20,22 @@ using System.Linq;
 
 public class EquipmentType
 {
-    public enum TypeOfEquipment
+    public enum eType
     {
-        None = -1, Block = 0, Ramp //, Cart, Sensor
+        None = 0, Block, Ramp //, Cart, Sensor
     }
 
-    private TypeOfEquipment equipType;
+    private eType equipType;
 
-    public TypeOfEquipment EquipType
+    public eType EquipType
     {
         get { return equipType; }
         set { equipType = value; }
     }
 
-    public bool contains(string equipment)
+    public bool IsDefined(string equipment)
     {
-        return Enum.IsDefined(typeof(TypeOfEquipment), equipment);
+        return Enum.IsDefined(typeof(eType), equipment);
     }
 
 }
