@@ -60,11 +60,11 @@ public class EquipmentControlDisplay : MonoBehaviour
 
     private void InitializeControlGUI(GameObject newControl, LabEquipment labEquipment, eType equipType)
     {
-        Slider slider;
-        TextMeshPro controlName;
-        TextMeshPro controlUnits;
-        TextMeshPro controlValue;
-        Button reset;
+        //Slider slider;
+        //TextMeshPro controlName;
+        //TextMeshPro controlUnits;
+        //TextMeshPro controlValue;
+        //Button reset;
 
         
         // initialize the GUI 
@@ -80,12 +80,12 @@ public class EquipmentControlDisplay : MonoBehaviour
 
     public void ShowEquipmentControl(int num)
     {
-        //if (value > 0)
+        if (num >= 0)
         {
             equipmentControlList[num].SetActive(true);
 
         }
-        //else
+        else
         {
             equipmentControlList[num].SetActive(false);
         }

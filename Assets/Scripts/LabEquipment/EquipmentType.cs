@@ -23,7 +23,7 @@ public class EquipmentType
     public enum eType
     {
         // the default of none is used to signal no equipent has been chosen
-        None = 0, Block, Ramp
+        None = -1, Block, Ramp
     }
 
     private eType equipType;

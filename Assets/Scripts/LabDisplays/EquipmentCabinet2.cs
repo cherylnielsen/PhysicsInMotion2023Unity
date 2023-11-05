@@ -15,12 +15,9 @@
  **/
 
 
-using System.Diagnostics.Tracing;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using TMPro;
-using System;
 using static EquipmentType;
 
 public class EquipmentCabinet2 : MonoBehaviour
@@ -42,17 +39,14 @@ public class EquipmentCabinet2 : MonoBehaviour
         ShowCabinet = false;
         buttonPanel.gameObject.SetActive(ShowCabinet);
         
-        // setup the button on click actions
-        // button to show or hide the equipment list
-        cabinetButton.onClick.AddListener(showEquipmentCabinet);
         // buttons to select what equipment to add to the lab
-        blockBtn.onClick.AddListener(() => addEquipmentToLab(eType.Block));
-        rampBtn.onClick.AddListener(() => addEquipmentToLab(eType.Ramp));
+        //blockBtn.onClick.AddListener(() => addEquipmentToLab(eType.Block));
+        //rampBtn.onClick.AddListener(() => addEquipmentToLab(eType.Ramp));
 
     }
    
 
-    void showEquipmentCabinet()
+    public void showEquipmentCabinet()
     {
         if (ShowCabinet)
         {
@@ -68,15 +62,21 @@ public class EquipmentCabinet2 : MonoBehaviour
     }
 
 
-    // eType is placed at the location the user chooses by clicking with the mouse.
-    public void addEquipmentToLab(eType equipType)
+    // equipment chosen is placed at the location the user clicks with the mouse.
+    public void addEquipmentToLab(int equipType)
     {
-        if (equipType != eType.None)
+        Debug.Log("called function addEquipmentToLab (" + equipType + ")");
+
+        if (equipType >= 0)
         {
+            Debug.Log("if equipType >=0 was true");
+
             // If the mouse has been clicked in the lab room
             // and if an equipment type has been selected, then this returns true.
-            if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
+            if (Input.GetMouseButtonDown(0) && EventSystem.current.IsPointerOverGameObject())
             {
+                Debug.Log("mouse clicked");
+
                 // Send a ray into the screen in the direction of the mouse.
                 Ray ray = cam.ScreenPointToRay(Input.mousePosition);
 
@@ -88,18 +88,21 @@ public class EquipmentCabinet2 : MonoBehaviour
                     // or use Transform objectHit = hit.transform;
                     // Do something with the object that was hit by the raycast.
 
-                    newEquipment = Instantiate(equipmentPrefabs[(int)equipType]);
-                    newEquipment.transform.position = hit.point;
+                    Debug.Log("starting switch in addEquipmentToLab (" + equipType + ")");
 
                     switch (equipType)
                     {
-                        case eType.Block:
+                        case ((int)eType.Block):
+                            newEquipment = Instantiate(equipmentPrefabs[equipType]);
+                            newEquipment.transform.position = hit.point;
                             newEquipment.GetComponent<Block>().InitializeSettings();
                             Debug.Log("new Block added to lab");
                             LabManager.Instance.addLabEquipment(newEquipment);                            
                             break;
 
-                        case eType.Ramp:
+                        case ((int)eType.Ramp):
+                            newEquipment = Instantiate(equipmentPrefabs[equipType]);
+                            newEquipment.transform.position = hit.point;
                             newEquipment.GetComponent<Ramp>().InitializeSettings();
                             Debug.Log("new Ramp added to lab");
                             LabManager.Instance.addLabEquipment(newEquipment);
@@ -108,6 +111,11 @@ public class EquipmentCabinet2 : MonoBehaviour
                                         
                 }
             }
+            else
+            {
+                Debug.Log("mouse not clicked");
+            }
+
         }
     }
 
