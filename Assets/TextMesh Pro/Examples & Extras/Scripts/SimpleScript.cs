@@ -30,7 +30,7 @@ namespace TMPro.Examples
             //m_textMeshPro.fontSharedMaterial = Resources.Load("Fonts & Materials/LiberationSans SDF - Bevel", typeof(Material)) as Material;
             //m_textMeshPro.fontSharedMaterial.EnableKeyword("BEVEL_ON");
             
-            // Set various font settings.
+            // Set various font settingsList.
             m_textMeshPro.fontSize = 48;
 
             m_textMeshPro.alignment = TextAlignmentOptions.Center;

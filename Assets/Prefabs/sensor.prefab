@@ -94,9 +94,10 @@ GameObject:
   - component: {fileID: 5376481879540161228}
   - component: {fileID: 9103133597048918036}
   - component: {fileID: 8506387439294875923}
+  - component: {fileID: -5015993058482480906}
   m_Layer: 0
-  m_Name: sensor
-  m_TagString: Untagged
+  m_Name: Sensor
+  m_TagString: Equipment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -147,6 +148,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-5015993058482480906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4744200688846798966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4d278c29d37d9c4a8430b9f913bc860, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9200444112407802663
 GameObject:
   m_ObjectHideFlags: 0
