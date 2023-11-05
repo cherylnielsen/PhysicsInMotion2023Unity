@@ -44,22 +44,22 @@ public abstract class LabEquipment : MonoBehaviour
         return true;
     }
 
-    public bool removeSetting(string equipmentSettingName)
+    public bool removeSetting(string settingName)
     {
-        if (settings.ContainsKey(equipmentSettingName))
+        if (settings.ContainsKey(settingName))
         {
-            settings.Remove(equipmentSettingName);
+            settings.Remove(settingName);
             return true;
         }
 
         return false;
     }
 
-    public EquipmentSetting getSetting(string equipmentSettingName)
+    public EquipmentSetting getSetting(string settingName)
     {
-        if(settings.ContainsKey(equipmentSettingName))
+        if(settings.ContainsKey(settingName))
         {
-            return settings[equipmentSettingName];
+            return settings[settingName];
         }    
 
         return null;

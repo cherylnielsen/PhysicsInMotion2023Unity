@@ -36,8 +36,7 @@ public class EquipmentControlDisplay : MonoBehaviour
 
     // Awake is called when the script instance is being loaded
     private void Awake()
-    {
-        
+    {        
         equipmentControlList = new Dictionary<int, GameObject>();
 
         // setup the dropdown control list action for when a control is selected to display
@@ -67,8 +66,7 @@ public class EquipmentControlDisplay : MonoBehaviour
         TextMeshPro controlValue;
         Button reset;
 
-        List<EquipmentSetting> settings = labEquipment.Settings.Keys.;
-
+        
         // initialize the GUI 
         // controlName.GetComponent<TextMeshPro>().text = settings.Name;
         // controlUnits.GetComponent<TextMeshPro>().text = settings.Units;

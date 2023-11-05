@@ -7,7 +7,7 @@
 * File: Cart.cs
 * 
 * Class: EquipmentType
-* Purpose: 
+* Purpose: Enumeration class for type of equipment, for easier programming
 * 
 **/
 
@@ -22,7 +22,8 @@ public class EquipmentType
 {
     public enum eType
     {
-        None = 0, Block, Ramp //, Cart, Sensor
+        // the default of none is used to signal no equipent has been chosen
+        None = 0, Block, Ramp
     }
 
     private eType equipType;

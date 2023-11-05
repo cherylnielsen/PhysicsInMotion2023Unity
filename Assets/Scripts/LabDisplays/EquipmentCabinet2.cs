@@ -94,13 +94,13 @@ public class EquipmentCabinet2 : MonoBehaviour
                     switch (equipType)
                     {
                         case eType.Block:
-                            newEquipment.GetComponent<Block>().initializeSettings(LabManager.LabEquipmentNumber++);
+                            newEquipment.GetComponent<Block>().InitializeSettings();
                             Debug.Log("new Block added to lab");
                             LabManager.Instance.addLabEquipment(newEquipment);                            
                             break;
 
                         case eType.Ramp:
-                            newEquipment.GetComponent<Ramp>().initializeSettings(LabManager.LabEquipmentNumber++);
+                            newEquipment.GetComponent<Ramp>().InitializeSettings();
                             Debug.Log("new Ramp added to lab");
                             LabManager.Instance.addLabEquipment(newEquipment);
                             break;
