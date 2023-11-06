@@ -16,12 +16,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using System;
-using System.Numerics;
-using UnityEngine.UI;
-using UnityEngine.UIElements;
-using static EquipmentType;
 
 
 public class LabManager : MonoBehaviour
@@ -38,8 +32,8 @@ public class LabManager : MonoBehaviour
     [SerializeField] private Camera cam;
 
     // the list of equipment in the lab
-    private Dictionary<int, LabEquipment> labEquipmentList; 
-
+    private Dictionary<int, LabEquipment> labEquipmentList;
+    
 
     // Singleton Pattern, private instance of this class
     private static LabManager intance = null;       
@@ -50,12 +44,13 @@ public class LabManager : MonoBehaviour
         {
             if (intance == null)
             {
-                intance = new LabManager();
+                intance = new LabManager();                
             }
                
             return Instance;                
         } 
     }
+    
 
 
     // Awake is called when the script instance is being loaded
@@ -91,6 +86,5 @@ public class LabManager : MonoBehaviour
         equipmentControls.AddEquipmentControl(equip);
     }
 
-    
 
-    }
+}

@@ -31,8 +31,9 @@ public abstract class LabEquipment : MonoBehaviour
     {
         EquipmentID = id;
         EquipType = type;
-        EquipmentName = EquipType.ToString() + "_" + id;
+        EquipmentName = EquipType.ToString() + "_" + EquipmentID;
         Description = EquipType.ToString();
+        InitializeSettings();
     }
 
     public abstract void InitializeSettings();

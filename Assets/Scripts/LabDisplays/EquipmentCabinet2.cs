@@ -32,6 +32,7 @@ public class EquipmentCabinet2 : MonoBehaviour
     private bool showCabinet;
     private GameObject newEquipment;
     private EquipmentType equipmentType;
+    private int equipmentId;
     public bool ShowCabinet { get => showCabinet; set => showCabinet = value; }
 
 
@@ -41,12 +42,8 @@ public class EquipmentCabinet2 : MonoBehaviour
         ShowCabinet = false;
         equipmentType = new EquipmentType();
         equipmentType.EquipType = eType.None;
+        equipmentId = 0;
         buttonPanel.gameObject.SetActive(ShowCabinet);
-        
-        // buttons to select what equipment to add to the lab
-        //blockBtn.onClick.AddListener(() => addEquipmentToLab(eType.Block));
-        //rampBtn.onClick.AddListener(() => addEquipmentToLab(eType.Ramp));
-
     }
 
 
@@ -108,62 +105,15 @@ public class EquipmentCabinet2 : MonoBehaviour
             // Place the equipment where the ray cast hit.
             if (Physics.Raycast(ray, out RaycastHit hit))
             {
-                // get the object that the ray hit
-                // GameObject hitObject = hit.transform.gameObject;
-                // or use Transform objectHit = hit.transform;
-                // Do something with the object that was hit by the raycast.
-
-                switch (equipmentType.EquipType)
-                {
-                    case (eType.Block):
-                        newEquipment = Instantiate(equipmentPrefabs[(int)eType.Block]);
-                        newEquipment.transform.position = hit.point;
-                        newEquipment.GetComponent<Block>().InitializeSettings();
-                        Debug.Log("new Block added to lab");
-                        //LabManager.Instance.AddEquipmentControlGUI(newEquipment);
-                        break;
-
-                    case (eType.Ramp):
-                        newEquipment = Instantiate(equipmentPrefabs[(int)eType.Ramp]);
-                        newEquipment.transform.position = hit.point;
-                        newEquipment.GetComponent<Ramp>().InitializeSettings();
-                        Debug.Log("new Ramp added to lab");
-                        //LabManager.Instance.AddEquipmentControlGUI(newEquipment);
-                        break;
-                }                
+                newEquipment = Instantiate(equipmentPrefabs[(int)equipmentType.EquipType]);
+                newEquipment.transform.position = hit.point;
+                newEquipment.GetComponent<LabEquipment>().Initialize(equipmentId++, equipmentType.EquipType);
+                Debug.Log("new " + equipmentType.EquipType.ToString() + "added to lab");
             }
 
         }
     }
 
-    /**
-    void PlaceEquipment()
-    {
-        // If the mouse has been clicked in the lab room
-        // and if an equipment type has been selected, then this returns true.
-        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject()
-            && equipmentType != EquipmentType.none)
-        {
-            // Send a ray into the screen in the direction of the mouse.
-            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-
-            // Place the equipment where the ray cast hit.
-            if (Physics.Raycast(ray, out RaycastHit hit))
-            {
-                // get the object that the ray hit
-                // GameObject hitObject = hit.transform.gameObject;
-                // or use Transform objectHit = hit.transform;
-                // Do something with the object that was hit by the raycast.
-
-                newEquipment = Instantiate(equipmentPrefabs[(int)equipmentType]);
-                newEquipment.transform.position = hit.point;
-                //Debug.Log("Hit: " + hit.point);
-
-                // reset equipmentType to none to prevent unintended new equipment instantiations
-                equipmentType = EquipmentType.none;
-            }
-
-        }
-    **/
+    
 
     }
