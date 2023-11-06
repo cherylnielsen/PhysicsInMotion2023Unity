@@ -38,7 +38,7 @@ public class LabManager : MonoBehaviour
     [SerializeField] private Camera cam;
 
     // the list of equipment in the lab
-    private Dictionary<int, GameObject> labEquipmentList; 
+    private Dictionary<int, LabEquipment> labEquipmentList; 
 
 
     // Singleton Pattern, private instance of this class
@@ -62,7 +62,7 @@ public class LabManager : MonoBehaviour
     // Awake acts like the initializer or constructor for the class
     private void Awake()
     {
-        labEquipmentList = new Dictionary<int, GameObject>();
+        labEquipmentList = new Dictionary<int, LabEquipment>();
         
         equipmentCabinet = equipCabinet.GetComponent<EquipmentCabinet2>();
         equipmentControls = equipControl.GetComponent<EquipmentControlDisplay>();
@@ -84,9 +84,9 @@ public class LabManager : MonoBehaviour
 
     }
 
-    public void AddEquipmentControlGUI(GameObject equip)
+    public void AddEquipmentControlGUI(LabEquipment equip)
     {
-        int equipmentID = equip.GetComponent<LabEquipment>().EquipmentID;       
+        int equipmentID = equip.EquipmentID;       
         labEquipmentList[equipmentID] = equip;      
         equipmentControls.AddEquipmentControl(equip);
     }

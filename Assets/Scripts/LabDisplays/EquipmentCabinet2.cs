@@ -78,6 +78,7 @@ public class EquipmentCabinet2 : MonoBehaviour
         {
             ShowCabinet = true;
             buttonPanel.gameObject.SetActive(ShowCabinet);
+            
         }
 
     }
@@ -115,24 +116,22 @@ public class EquipmentCabinet2 : MonoBehaviour
                 switch (equipmentType.EquipType)
                 {
                     case (eType.Block):
-                        newEquipment = Instantiate(equipmentPrefabs[(int)equipmentType.EquipType]);
+                        newEquipment = Instantiate(equipmentPrefabs[(int)eType.Block]);
                         newEquipment.transform.position = hit.point;
                         newEquipment.GetComponent<Block>().InitializeSettings();
                         Debug.Log("new Block added to lab");
-                        LabManager.Instance.AddEquipmentControlGUI(newEquipment);
+                        //LabManager.Instance.AddEquipmentControlGUI(newEquipment);
                         break;
 
                     case (eType.Ramp):
-                        newEquipment = Instantiate(equipmentPrefabs[(int)equipmentType.EquipType]);
+                        newEquipment = Instantiate(equipmentPrefabs[(int)eType.Ramp]);
                         newEquipment.transform.position = hit.point;
                         newEquipment.GetComponent<Ramp>().InitializeSettings();
                         Debug.Log("new Ramp added to lab");
-                        LabManager.Instance.AddEquipmentControlGUI(newEquipment);
+                        //LabManager.Instance.AddEquipmentControlGUI(newEquipment);
                         break;
                 }                
             }
-
-            //equipmentType.EquipType = eType.None;
 
         }
     }
