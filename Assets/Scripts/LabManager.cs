@@ -84,7 +84,7 @@ public class LabManager : MonoBehaviour
 
     }
 
-    public void addLabEquipment(GameObject equip)
+    public void AddEquipmentControlGUI(GameObject equip)
     {
         int equipmentID = equip.GetComponent<LabEquipment>().EquipmentID;       
         labEquipmentList[equipmentID] = equip;      
@@ -93,5 +93,4 @@ public class LabManager : MonoBehaviour
 
     
 
-
-}
+    }
