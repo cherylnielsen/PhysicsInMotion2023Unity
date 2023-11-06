@@ -131,10 +131,8 @@ public class EquipmentCabinet2 : MonoBehaviour
                         break;
                 }                
             }
-            else
-            {
-                Debug.Log("mouse not clicked &Or Oops");
-            }
+
+            //equipmentType.EquipType = eType.None;
 
         }
     }
