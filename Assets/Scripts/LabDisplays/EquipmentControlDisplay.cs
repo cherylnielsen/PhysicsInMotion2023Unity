@@ -44,16 +44,21 @@ public class EquipmentControlDisplay : MonoBehaviour
     }
 
 
-    public void AddEquipmentControl(GameObject equipment)
+    public void AddEquipmentControl(LabEquipment equipment)
     {
-        LabEquipment labEquipment = equipment.GetComponent<LabEquipment>();
-        eType equipType = labEquipment.EquipType;
-        newControl = Instantiate(equipControlPrefabs[(int)equipType]);
-        int id = labEquipment.EquipmentID;
-        equipmentControlList[id] = newControl;
-        newControl.SetActive(false);
-        InitializeControlGUI(newControl, labEquipment, equipType);
-        Debug.Log("new " + equipType.ToString() + " added to controls");
+        foreach (KeyValuePair<string, EquipmentSetting> entry in equipment.Settings)
+        {
+            newControl = Instantiate(equipControlPrefabs[(int)equipment.EquipType]);
+            newControl.SetActive(false);
+            InitializeControlGUI(newControl, equipment, equipment.EquipType);
+            int id = equipment.EquipmentID;
+            equipmentControlList[id] = newControl;
+            Debug.Log("added " + entry.Key + " controls");
+        }
+
+        
+        
+        Debug.Log("added equipment setting controls");
 
     }
 

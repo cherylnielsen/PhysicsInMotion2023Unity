@@ -31,44 +31,21 @@ public abstract class LabEquipment : MonoBehaviour
     {
         EquipmentID = id;
         EquipType = type;
-        EquipmentName = EquipType.ToString() + "_" + id;
+        EquipmentName = EquipType.ToString() + "_" + EquipmentID;
         Description = EquipType.ToString();
+
+        settings = new Dictionary<string, EquipmentSetting>();
+        InitializeSettings();
     }
 
+    // add the default equipment settings for this type of lab equipment
     public abstract void InitializeSettings();
-
-    // warning: replaces current equipment setting with that name, without notice
-    public bool addSetting(EquipmentSetting equipmentSetting)
-    {
-        settings.Add(equipmentSetting.Name, equipmentSetting);
-        return true;
-    }
-
-    public bool removeSetting(string settingName)
-    {
-        if (settings.ContainsKey(settingName))
-        {
-            settings.Remove(settingName);
-            return true;
-        }
-
-        return false;
-    }
-
-    public EquipmentSetting getSetting(string settingName)
-    {
-        if(settings.ContainsKey(settingName))
-        {
-            return settings[settingName];
-        }    
-
-        return null;
-    }
 
 
     // Getters and Setters
 
-    public eType EquipType { get => equipType; set => equipType = value; }
+    public Dictionary<string, EquipmentSetting> Settings { get { return settings; } }
+    public eType EquipType { get => equipType; private set => equipType = value; }
     public int EquipmentID { get => equipmentID; set => equipmentID = value; }
     public string EquipmentName { get => equipmentName; set => equipmentName = value; }
     public string Description { get => description; set => description = value; }

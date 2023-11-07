@@ -16,12 +16,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using System;
-using System.Numerics;
-using UnityEngine.UI;
-using UnityEngine.UIElements;
-using static EquipmentType;
 
 
 public class LabManager : MonoBehaviour
@@ -38,35 +32,28 @@ public class LabManager : MonoBehaviour
     [SerializeField] private Camera cam;
 
     // the list of equipment in the lab
-    private Dictionary<int, GameObject> labEquipmentList; 
-
+    private Dictionary<int, LabEquipment> labEquipmentList;
+    
 
     // Singleton Pattern, private instance of this class
-    private static LabManager intance = null;       
+    public static LabManager Intance;       
     // Singleton Pattern, public access to this single object, so it can only be created once.
-    public static LabManager Instance
-    { 
-        get 
-        {
-            if (intance == null)
-            {
-                intance = new LabManager();
-            }
-               
-            return Instance;                
-        } 
-    }
+    
+    
 
 
     // Awake is called when the script instance is being loaded
     // Awake acts like the initializer or constructor for the class
     private void Awake()
     {
-        labEquipmentList = new Dictionary<int, GameObject>();
-        
-        equipmentCabinet = equipCabinet.GetComponent<EquipmentCabinet2>();
-        equipmentControls = equipControl.GetComponent<EquipmentControlDisplay>();
+        if (Intance == null)
+        {
+            labEquipmentList = new Dictionary<int, LabEquipment>();
+            equipmentCabinet = equipCabinet.GetComponent<EquipmentCabinet2>();
+            equipmentControls = equipControl.GetComponent<EquipmentControlDisplay>();
+        }
 
+        Intance = this;
     }
 
 
@@ -84,13 +71,12 @@ public class LabManager : MonoBehaviour
 
     }
 
-    public void AddEquipmentControlGUI(GameObject equip)
+    public void AddEquipmentToLab(LabEquipment equip)
     {
-        int equipmentID = equip.GetComponent<LabEquipment>().EquipmentID;       
+        int equipmentID = equip.EquipmentID;       
         labEquipmentList[equipmentID] = equip;      
         equipmentControls.AddEquipmentControl(equip);
     }
 
-    
 
-    }
+}

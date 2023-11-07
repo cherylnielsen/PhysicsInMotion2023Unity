@@ -34,7 +34,7 @@ public class EquipmentSettingGUI : MonoBehaviour
         value.GetComponent<TextMeshPro>().text = setting.Value.ToString();
 
         // set the event actions for the controls in the control panel
-        slider.onValueChanged.AddListener(sliderAction);
+        //slider.onValueChanged.AddListener(sliderAction);
 
     }
 
