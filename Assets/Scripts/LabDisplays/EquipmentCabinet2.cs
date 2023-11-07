@@ -30,7 +30,7 @@ public class EquipmentCabinet2 : MonoBehaviour
     [SerializeField] private Camera cam;
 
     private bool showCabinet;
-    private GameObject newEquipment;
+    private LabEquipment labEquipment;
     private EquipmentType equipmentType;
     private int equipmentId;
     public bool ShowCabinet { get => showCabinet; set => showCabinet = value; }
@@ -105,9 +105,10 @@ public class EquipmentCabinet2 : MonoBehaviour
             // Place the equipment where the ray cast hit.
             if (Physics.Raycast(ray, out RaycastHit hit))
             {
-                newEquipment = Instantiate(equipmentPrefabs[(int)equipmentType.EquipType]);
-                newEquipment.transform.position = hit.point;
-                newEquipment.GetComponent<LabEquipment>().Initialize(equipmentId++, equipmentType.EquipType);
+                labEquipment = Instantiate(equipmentPrefabs[(int)equipmentType.EquipType]).GetComponent<LabEquipment>();
+                labEquipment.transform.position = hit.point;
+                labEquipment.Initialize(equipmentId++, equipmentType.EquipType);
+                
                 Debug.Log("new " + equipmentType.EquipType.ToString() + "added to lab");
             }
 

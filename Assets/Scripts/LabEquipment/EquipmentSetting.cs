@@ -28,19 +28,16 @@ public class EquipmentSetting
     private float value;
 
 
-    // empty constructor
-    public EquipmentSetting() { }
-
-
     // full initializing constructor
-    public EquipmentSetting(string name, string units, float min, float max, float value)
+    public EquipmentSetting(string sName, string sUnits, float minValue, float maxValue, float theValue)
     {
-        Name = name ?? throw new ArgumentNullException(nameof(name));
-        Units = units ?? throw new ArgumentNullException(nameof(units));
-        Min = min;
-        Max = max;
-        Value = value;
+        name = sName;
+        units = sUnits;
+        min = minValue;
+        max = maxValue;
+        value = theValue;
     }
+
 
 
     // standard getters and setters
