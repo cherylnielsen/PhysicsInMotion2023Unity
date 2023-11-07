@@ -108,7 +108,8 @@ public class EquipmentCabinet2 : MonoBehaviour
                 labEquipment = Instantiate(equipmentPrefabs[(int)equipmentType.EquipType]).GetComponent<LabEquipment>();
                 labEquipment.transform.position = hit.point;
                 labEquipment.Initialize(equipmentId++, equipmentType.EquipType);
-                
+
+                //LabManager.Intance.AddEquipmentToLab(labEquipment);
                 Debug.Log("new " + equipmentType.EquipType.ToString() + "added to lab");
             }
 

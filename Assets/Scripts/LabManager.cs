@@ -36,20 +36,9 @@ public class LabManager : MonoBehaviour
     
 
     // Singleton Pattern, private instance of this class
-    private static LabManager intance = null;       
+    public static LabManager Intance;       
     // Singleton Pattern, public access to this single object, so it can only be created once.
-    public static LabManager Instance
-    { 
-        get 
-        {
-            if (intance == null)
-            {
-                intance = new LabManager();                
-            }
-               
-            return Instance;                
-        } 
-    }
+    
     
 
 
@@ -57,11 +46,14 @@ public class LabManager : MonoBehaviour
     // Awake acts like the initializer or constructor for the class
     private void Awake()
     {
-        labEquipmentList = new Dictionary<int, LabEquipment>();
-        
-        equipmentCabinet = equipCabinet.GetComponent<EquipmentCabinet2>();
-        equipmentControls = equipControl.GetComponent<EquipmentControlDisplay>();
+        if (Intance == null)
+        {
+            labEquipmentList = new Dictionary<int, LabEquipment>();
+            equipmentCabinet = equipCabinet.GetComponent<EquipmentCabinet2>();
+            equipmentControls = equipControl.GetComponent<EquipmentControlDisplay>();
+        }
 
+        Intance = this;
     }
 
 
@@ -79,7 +71,7 @@ public class LabManager : MonoBehaviour
 
     }
 
-    public void AddEquipmentControlGUI(LabEquipment equip)
+    public void AddEquipmentToLab(LabEquipment equip)
     {
         int equipmentID = equip.EquipmentID;       
         labEquipmentList[equipmentID] = equip;      
