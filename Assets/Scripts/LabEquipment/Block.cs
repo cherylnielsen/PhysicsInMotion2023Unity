@@ -17,6 +17,8 @@ public class Block : LabEquipment
 {
     // position, rotation, scale ??
     // mass, friction ??
+   
+
 
     // add the default equipment settings for this type of lab equipment
     public override void InitializeSettings()
@@ -36,5 +38,10 @@ public class Block : LabEquipment
 
     }
 
- 
+    public override void setEquipmentType()
+    {
+        EquipType = EquipmentType.eType.Block;
+    }
+
+
 }

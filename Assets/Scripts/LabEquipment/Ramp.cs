@@ -25,6 +25,7 @@ public class Ramp : LabEquipment
     // mass, friction ??
 
 
+
     // add the default equipment settings for this type of lab equipment
     public override void InitializeSettings()
     {
@@ -48,7 +49,10 @@ public class Ramp : LabEquipment
         
     }
 
-
+    public override void setEquipmentType()
+    {
+        EquipType = EquipmentType.eType.Ramp;
+    }
 
 }
 
