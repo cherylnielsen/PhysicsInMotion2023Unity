@@ -16,6 +16,7 @@ public class EquipmentControl : MonoBehaviour
 
     public void Awake()
     {
+        
         //this.gameObject.SetActive(false);
         parentGUI = this.gameObject.transform;
         equipName = parentGUI.Find("EquipName").GetComponent<TextMeshPro>();
@@ -24,6 +25,7 @@ public class EquipmentControl : MonoBehaviour
 
         // need to get slider 
         slider = parentGUI.GetComponent<Slider>();
+        
     }
 
     public void InitializeControl(LabEquipment equipment, EquipmentSetting setting)
