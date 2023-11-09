@@ -21,21 +21,30 @@ public class EquipmentSetting
     // the units for this setting, needed for data, math, graphs, diagrams, etc
     private string units;
     // the maximum value that this setting will alow to be set
-    private float max;
+    private float maxValue;
     // the minimum value that this setting will alow to be set
-    private float min;
+    private float minValue;
     // the initial or current value of the setting
     private float value;
 
+    public EquipmentSetting(EquipmentSetting equipSetting)
+    {
+        Name = equipSetting.Name;
+        Units = equipSetting.Units;
+        MinValue = equipSetting.MinValue;
+        MaxValue = equipSetting.MaxValue;
+        Value = equipSetting.MinValue;
+    }
+
 
     // full initializing constructor
-    public EquipmentSetting(string sName, string sUnits, float minValue, float maxValue, float theValue)
+    public EquipmentSetting(string name, string units, float minValue, float maxValue, float value)
     {
-        name = sName;
-        units = sUnits;
-        min = minValue;
-        max = maxValue;
-        value = theValue;
+        Name = name;
+        Units = units;
+        MinValue = minValue;
+        MaxValue = maxValue;
+        Value = value;
     }
 
 
@@ -43,8 +52,8 @@ public class EquipmentSetting
     // standard getters and setters
     public string Name { get => name; set => name = value; }
     public string Units { get => units; set => units = value; }
-    public float Max { get => max; set => max = value; }
-    public float Min { get => min; set => min = value; }
+    public float MaxValue { get => maxValue; set => maxValue = value; }
+    public float MinValue { get => minValue; set => minValue = value; }
     
     public float Value 
     {
@@ -52,13 +61,13 @@ public class EquipmentSetting
 
         set
         {
-            if(Min <= value && value <= Max)
+            if(MinValue <= value && value <= MaxValue)
             {
                 this.value = value;
             }
             else
             {
-                this.value = Min;
+                this.value = MinValue;
             }
             
         }

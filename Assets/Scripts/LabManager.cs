@@ -33,13 +33,17 @@ public class LabManager : MonoBehaviour
 
     // the list of equipment in the lab
     private Dictionary<int, LabEquipment> labEquipmentList;
-    
+
+    private int equipmentId = 0;
 
     // Singleton Pattern, private instance of this class
-    public static LabManager Intance;       
+    public static LabManager Intance;
+
+    public int EquipmentId { get => equipmentId++; private set => equipmentId = value; }
+
     // Singleton Pattern, public access to this single object, so it can only be created once.
-    
-    
+
+
 
 
     // Awake is called when the script instance is being loaded
@@ -75,7 +79,8 @@ public class LabManager : MonoBehaviour
     {
         int equipmentID = equip.EquipmentID;       
         labEquipmentList[equipmentID] = equip;      
-        equipmentControls.AddEquipmentControl(equip);
+        equipmentControls.AddEquipmentControls(equip);
+
     }
 
 

@@ -24,17 +24,11 @@ using static EquipmentType;
 public class EquipmentCabinet2 : MonoBehaviour
 {
     [SerializeField] private GameObject[] equipmentPrefabs;
-    [SerializeField] private Button cabinetButton;
-    [SerializeField] private Button cartBtn, blockBtn, rampBtn, sensorBtn;
     [SerializeField] private Image buttonPanel;
     [SerializeField] private Camera cam;
 
-    private bool showCabinet;
-    private LabEquipment labEquipment;
     private EquipmentType equipmentType;
-    private int equipmentId;
-    public bool ShowCabinet { get => showCabinet; set => showCabinet = value; }
-
+    private bool showCabinet;    
 
     // Awake is called when the script instance is being loaded
     private void Awake()
@@ -42,29 +36,21 @@ public class EquipmentCabinet2 : MonoBehaviour
         ShowCabinet = false;
         equipmentType = new EquipmentType();
         equipmentType.EquipType = eType.None;
-        equipmentId = 0;
         buttonPanel.gameObject.SetActive(ShowCabinet);
-    }
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
     }
 
 
     // Update is called once per frame
     void Update()
     {
-        if (equipmentType.EquipType >= 0)
+        if (equipmentType.EquipType != eType.None)
         {
-            addEquipmentToLab();
+            AddEquipmentToLab();
         }
     }
 
 
-    public void showEquipmentCabinet()
+    public void ShowEquipmentCabinet()
     {
         if (ShowCabinet)
         {
@@ -80,18 +66,17 @@ public class EquipmentCabinet2 : MonoBehaviour
 
     }
 
-
-
     public void SetEquipmentType(int equipType)
     {
         equipmentType.EquipType = (eType)equipType;
         Debug.Log("equipmentType: " + equipmentType.EquipType);
     }
 
+    public bool ShowCabinet { get => showCabinet; set => showCabinet = value; }
 
 
     // equipment chosen is placed at the location the user clicks with the mouse.
-    public void addEquipmentToLab()
+    public void AddEquipmentToLab()
     {
         // If the left mouse buttton has been clicked in the lab room,
         // and if an equipment type has been selected, then this returns true.
@@ -105,15 +90,15 @@ public class EquipmentCabinet2 : MonoBehaviour
             // Place the equipment where the ray cast hit.
             if (Physics.Raycast(ray, out RaycastHit hit))
             {
-                labEquipment = Instantiate(equipmentPrefabs[(int)equipmentType.EquipType]).GetComponent<LabEquipment>();
+                LabEquipment labEquipment = Instantiate(equipmentPrefabs[(int)equipmentType.EquipType]).GetComponent<LabEquipment>();
                 labEquipment.transform.position = hit.point;
-                labEquipment.Initialize(equipmentId++, equipmentType.EquipType);
-
-                //LabManager.Intance.AddEquipmentToLab(labEquipment);
+                LabManager.Intance.AddEquipmentToLab(labEquipment);
                 Debug.Log("new " + equipmentType.EquipType.ToString() + "added to lab");
             }
 
+            equipmentType.EquipType = eType.None;
         }
+
     }
 
     

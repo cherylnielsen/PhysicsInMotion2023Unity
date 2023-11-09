@@ -27,25 +27,29 @@ public abstract class LabEquipment : MonoBehaviour
 
     private Dictionary<string, EquipmentSetting> settings;
 
-    public void Initialize(int id, eType type)
+    public void Awake()
     {
-        EquipmentID = id;
-        EquipType = type;
+        EquipmentID = LabManager.Intance.EquipmentId;
         EquipmentName = EquipType.ToString() + "_" + EquipmentID;
         Description = EquipType.ToString();
-
+        setEquipmentType();
         settings = new Dictionary<string, EquipmentSetting>();
         InitializeSettings();
     }
 
-    // add the default equipment settings for this type of lab equipment
+
+    // add the default equipment settings and controls for this type of lab equipment
     public abstract void InitializeSettings();
+
+
+    // set the type for this type of lab equipment
+    public abstract void setEquipmentType();
 
 
     // Getters and Setters
 
     public Dictionary<string, EquipmentSetting> Settings { get { return settings; } }
-    public eType EquipType { get => equipType; private set => equipType = value; }
+    public eType EquipType { get => equipType; set => equipType = value; }
     public int EquipmentID { get => equipmentID; set => equipmentID = value; }
     public string EquipmentName { get => equipmentName; set => equipmentName = value; }
     public string Description { get => description; set => description = value; }
