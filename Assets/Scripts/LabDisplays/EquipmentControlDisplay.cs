@@ -52,19 +52,20 @@ public class EquipmentControlDisplay : MonoBehaviour
         
     }
 
-
+    public void HideSelectedEquipControls(Button button)
+    {
+        // To Be Done
+        string text = button.GetComponent<TextMeshPro>().text;
+        int id = 0;
+    }
 
     public void AddEquipmentControls(LabEquipment equipment)
     {
         foreach (KeyValuePair<string, EquipmentSetting> entry in equipment.Settings)
         {
-            GameObject control = Instantiate(equipControlPrefab).GetComponent<EquipmentControlGUI>();
-            control.SetActive(false);
-            control.GetComponent<EquipmentControl>().Equals(entry.Value);
-            control.transform.SetParent(mainControlPanel.transform, false);
-
+            GameObject control = Instantiate(equipControlPrefab);
+            control.transform.SetParent(mainControlPanel.transform, false);            
             equipmentControlList.Add(control);
-            showControls = true;
         }
 
         if(showControls == false & equipmentControlList.Count > 0)

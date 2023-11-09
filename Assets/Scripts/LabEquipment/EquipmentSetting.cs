@@ -27,6 +27,15 @@ public class EquipmentSetting
     // the initial or current value of the setting
     private float value;
 
+    public EquipmentSetting(EquipmentSetting equipSetting)
+    {
+        Name = equipSetting.Name;
+        Units = equipSetting.Units;
+        MinValue = equipSetting.MinValue;
+        MaxValue = equipSetting.MaxValue;
+        Value = equipSetting.MinValue;
+    }
+
 
     // full initializing constructor
     public EquipmentSetting(string name, string units, float minValue, float maxValue, float value)

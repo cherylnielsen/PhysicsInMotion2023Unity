@@ -18,39 +18,40 @@ public class EquipmentControl : MonoBehaviour
     {
         //this.gameObject.SetActive(false);
         parentGUI = this.gameObject.transform;
-        equipName = parentGUI.Find("EquipName").gameObject.GetComponent<TextMeshPro>();
-        controlName = parentGUI.Find("ControlName").gameObject.GetComponent<TextMeshPro>();
-        controlValue = parentGUI.Find("ControlValue").gameObject.GetComponent<TextMeshPro>();
+        equipName = parentGUI.Find("EquipName").GetComponent<TextMeshPro>();
+        controlName = parentGUI.Find("ControlName").GetComponent<TextMeshPro>();
+        controlValue = parentGUI.Find("ControlValue").GetComponent<TextMeshPro>();
 
         // need to get slider 
+        slider = parentGUI.GetComponent<Slider>();
     }
 
-    private void InitializeControl(LabEquipment equipment, EquipmentSetting setting)
+    public void InitializeControl(LabEquipment equipment, EquipmentSetting setting)
     {
         Debug.Log("InitializeControl");
 
         labEquipment = equipment;
         equipmentSetting = setting;
 
-        // initialize the GUI 
+        // set up the GUI text
         equipName.text = equipment.EquipmentName;
         controlName.text = setting.Name + "(" + setting.Units + ")";
         controlValue.text = setting.Value.ToString();
 
+        // set up the GUI slider control
+        slider.minValue = setting.MinValue;
+        slider.maxValue = setting.MaxValue;
+        slider.value = setting.Value;
 
-        // slider.minValue = setting.Min;
-        //slider.maxValue = setting.Max;
-        // slider.value = setting.Value;
-
-        // set the event actions for the controls in the control panel
-        // slider.onValueChanged.AddListener(sliderAction);
+        // set the event action for the slider control
+        slider.onValueChanged.AddListener(sliderAction);
     }
 
 
     private void sliderAction(float num)
     {
         equipmentSetting.Value = num;
-        //controlValue.GetComponent<TextMeshPro>().text = num.ToString();
+        controlValue.text = num.ToString();
     }
 
 

@@ -80,6 +80,7 @@ public class LabManager : MonoBehaviour
         int equipmentID = equip.EquipmentID;       
         labEquipmentList[equipmentID] = equip;      
         equipmentControls.AddEquipmentControls(equip);
+
     }
 
 
