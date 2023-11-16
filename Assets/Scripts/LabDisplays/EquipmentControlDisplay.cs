@@ -27,20 +27,21 @@ using static EquipmentType;
 
 public class EquipmentControlDisplay : MonoBehaviour
 {
-    private List<GameObject> equipmentControlList;
-
-    [SerializeField] private GameObject equipControlPrefab;
     [SerializeField] private Button controlButton;
     [SerializeField] private Image mainControlPanel;
+    [SerializeField] private GameObject equipControlPrefab;
+
+    private List<GameObject> equipmentControlList;
 
     private bool showControls;
     public bool ShowControls { get => showControls; set => showControls = value; }
+    public List<GameObject> EquipmentControlList { get => equipmentControlList; set => equipmentControlList = value; }
 
 
     // Awake is called when the script instance is being loaded
     private void Awake()
     {        
-        equipmentControlList = new List<GameObject>();
+        EquipmentControlList = new List<GameObject>();
         showControls = false;
         mainControlPanel.gameObject.SetActive(showControls);
     }
@@ -52,11 +53,10 @@ public class EquipmentControlDisplay : MonoBehaviour
         
     }
 
-    public void HideSelectedEquipControls(Button button)
+    public void HideSelectedEquipControls()
     {
         // To Be Done
-        string text = button.GetComponent<TextMeshPro>().text;
-        int id = 0;
+        
     }
 
     public void AddEquipmentControls(LabEquipment equipment)
@@ -65,14 +65,16 @@ public class EquipmentControlDisplay : MonoBehaviour
         {
             GameObject control = Instantiate(equipControlPrefab);
             control.transform.SetParent(mainControlPanel.transform, false);            
-            equipmentControlList.Add(control);
+            EquipmentControlList.Add(control);
         }
 
-        if(showControls == false & equipmentControlList.Count > 0)
+        if(showControls == false & EquipmentControlList.Count > 0)
         {
             showControls = true;
             mainControlPanel.gameObject.SetActive(showControls);
         }
+
+        Debug.Log("count equipment control list " + EquipmentControlList.Count);
     }
 
 
